@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "FitPlan",
+    "slug": "fitplan-mobile",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "ios": {
+      "bundleIdentifier": "com.fitplan.mobile",
+      "supportsTablet": false,
+      "infoPlist": { "NSAppTransportSecurity": { "NSAllowsLocalNetworking": true } }
+    },
+    "android": { "package": "com.fitplan.mobile" }
+  }
+}

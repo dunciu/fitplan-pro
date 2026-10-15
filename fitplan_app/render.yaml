@@ -1,0 +1,22 @@
+# One-click deploy on Render (render.com -> New -> Blueprint -> pick this GitHub repo).
+# If fitplan_app is a subfolder of your repo, keep rootDir; if it IS the repo root, delete the rootDir line.
+services:
+  - type: web
+    name: fitplan-pro
+    runtime: python
+    rootDir: fitplan_app
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v2/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: ANTHROPIC_API_KEY
+        sync: false            # Render asks you for it; it never goes in GitHub
+      - key: FITPLAN_MODEL
+        value: claude-sonnet-5-5
+      - key: FITPLAN_DB
+        value: /tmp/fitplan.db # free plan has no disk: data resets on redeploy, fine for judging
+      - key: FITPLAN_ALLOW_DEMO
+        value: "1"
